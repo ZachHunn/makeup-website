@@ -1,17 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 // @ts-ignore
 import { serviceItems } from './serviceItems';
+import { createServiceItems } from '../repository/servicesRepo';
 
 const prisma = new PrismaClient();
-async function seedServices() {
-  serviceItems.forEach(async (serviceItem: any) => {
-    await prisma.serviceItem.createMany({
-      data: serviceItem,
-    });
-  });
-}
+
 async function main() {
-  await seedServices();
+  await createServiceItems(serviceItems);
 }
 
 main()
