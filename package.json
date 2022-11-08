@@ -30,6 +30,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.39.1",
     "react-query": "^3.39.2",
+    "twin.macro": "^2.8.2",
     "zod": "^3.19.1"
   },
   "devDependencies": {
