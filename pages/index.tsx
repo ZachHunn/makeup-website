@@ -10,11 +10,21 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <Loading css={{ marign: 'auto' }} size="xl" type="gradient">
+      <Loading
+        css={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+        }}
+        size="xl"
+        type="gradient"
+      >
         Loading
       </Loading>
     );
   }
+  console.log(galleryQueryData);
   return (
     <div>
       <Head>
@@ -34,7 +44,7 @@ export default function Home() {
             if (!containsVideo) {
               return (
                 <Grid key={media.id}>
-                  <Card css={{ height: '100%' }} isHoverable isPressable>
+                  <Card isHoverable isPressable>
                     <Card.Body css={{ p: 0 }}>
                       <Card.Image
                         css={{ height: '100%' }}
@@ -54,11 +64,10 @@ export default function Home() {
                     <Card.Body css={{ p: 0 }}>
                       <video
                         width="200"
-                        height="200"
+                        height="355"
                         src={media.media_url}
                         loop
                         muted
-                        autoPlay
                       />
                     </Card.Body>
                   </Card>

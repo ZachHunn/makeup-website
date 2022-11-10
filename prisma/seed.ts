@@ -1,10 +1,9 @@
-import { PrismaClient, Gallery } from '@prisma/client';
+import { Gallery } from '@prisma/client';
+import prisma from './prisma';
 // @ts-ignore
 import { serviceItems } from './serviceItems';
 import { createServiceItems } from '../repository/servicesRepo';
 import axios from 'axios';
-
-const prisma = new PrismaClient();
 
 const token = process.env.INSTAGRAM_TOKEN;
 const instaUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url&access_token=${token}`;
