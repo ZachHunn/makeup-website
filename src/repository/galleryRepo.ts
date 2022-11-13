@@ -1,5 +1,5 @@
 import { Gallery } from '@prisma/client';
-import prisma from '../utils/prismaClient';
+import prisma from '../../utils/prismaClient';
 
 export const getGallery = async (): Promise<Gallery[]> => {
   return await prisma.gallery.findMany();

@@ -1,5 +1,5 @@
 import { Gallery } from '@prisma/client';
-import { serviceItem } from '../repository/servicesRepo';
+import { serviceItem } from '../src/repository/servicesRepo';
 import { supabase } from '../utils/supabaseClient';
 
 export const serviceItems: serviceItem[] = [

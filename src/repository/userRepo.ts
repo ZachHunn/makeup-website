@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import prisma from '../utils/prismaClient';
+import prisma from '../../utils/prismaClient';
 
 export const createUsers = async (userList: User[]) => {
   for (let user of userList) {
