@@ -1,24 +1,23 @@
 import { Gallery } from '@prisma/client';
-import prisma from './prisma';
+import prisma from '../utils/prismaClient';
 // @ts-ignore
-import { serviceItems } from './serviceItems';
 import { createServiceItems } from '../repository/servicesRepo';
-import axios from 'axios';
+import { getMediaItemsFromStorgae, serviceItems } from './setupSeed';
 
-const token = process.env.INSTAGRAM_TOKEN;
-const instaUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url&access_token=${token}`;
+import { GalleryMedia } from './setupSeed';
 
-async function seedGallery(url: string) {
-  const mediaInformation: Gallery[] = await axios
-    .get(url)
-    .then((res) => res.data.data);
+async function seedGallery() {
+  const videoFiles = await getMediaItemsFromStorgae('videos');
+  const photoFiles = await getMediaItemsFromStorgae('photos');
+
+  const mediaInformation = [...photoFiles, ...videoFiles];
+
   return mediaInformation.forEach(
-    async (mediaInfo: Gallery): Promise<Gallery> => {
+    async (mediaInfo: GalleryMedia): Promise<GalleryMedia> => {
       return await prisma.gallery.create({
         data: {
-          id: Number(mediaInfo.id),
-          caption: mediaInfo.caption,
-          media_url: mediaInfo.media_url,
+          mediaName: mediaInfo.mediaName,
+          mediaType: mediaInfo.mediaType,
         },
       });
     },
@@ -27,7 +26,7 @@ async function seedGallery(url: string) {
 
 async function main() {
   await createServiceItems(serviceItems);
-  await seedGallery(instaUrl);
+  await seedGallery();
 }
 
 main()

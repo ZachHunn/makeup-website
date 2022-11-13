@@ -1,5 +1,5 @@
 import { ServiceItem } from '@prisma/client';
-import prisma from '../prisma/prisma';
+import prisma from '../utils/prismaClient';
 
 export type serviceItem = Omit<ServiceItem, 'id'>;
 

@@ -8,7 +8,7 @@ export const galleryQueryKeys = {
   images: () => ['images'],
 };
 
-export const useGetGalleryImages = () => {
+export const useGetGalleryMedia = () => {
   return useQuery<Gallery[]>(galleryQueryKeys.images(), () =>
     axios.get(EUri.GALLERY).then((results) => results.data),
   );
