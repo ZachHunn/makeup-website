@@ -1,4 +1,6 @@
-import { serviceItem } from '../repository/servicesRepo';
+import { Gallery } from '@prisma/client';
+import { serviceItem } from '../src/repository/servicesRepo';
+import { supabase } from '../utils/supabaseClient';
 
 export const serviceItems: serviceItem[] = [
   {
@@ -49,3 +51,28 @@ export const serviceItems: serviceItem[] = [
     price: 40,
   },
 ];
+
+export type GalleryMedia = Omit<Gallery, 'id'>;
+
+export const getMediaItemsFromStorgae = async (
+  bucketName: string,
+): Promise<GalleryMedia[]> => {
+  const bucketMedia = await supabase.storage
+    .from(bucketName)
+    .list()
+    .then((data) =>
+      data.data?.map((media) => {
+        const mediaUrlData = supabase.storage
+          .from(bucketName)
+          .getPublicUrl(media.name).data.publicUrl;
+        const mediaData: GalleryMedia = {
+          mediaUrl: mediaUrlData,
+          mediaName: media.name,
+          mediaType: media.metadata.mimetype,
+        };
+        return mediaData;
+      }),
+    )
+    .catch((error) => console.log(error));
+  return bucketMedia!;
+};

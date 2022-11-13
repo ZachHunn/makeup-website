@@ -1,6 +1,6 @@
-import { PrismaClient, ServiceItem } from '@prisma/client';
+import { ServiceItem } from '@prisma/client';
+import prisma from '../../utils/prismaClient';
 
-const prisma = new PrismaClient();
 export type serviceItem = Omit<ServiceItem, 'id'>;
 
 export const createServiceItems = async (serviceItemList: serviceItem[]) => {

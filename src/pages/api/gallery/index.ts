@@ -1,7 +1,6 @@
 import { Gallery } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
-import axios from 'axios';
-import { getGalleryImages } from '../../../repository/galleryRepo';
+import { getGallery } from '../../../repository/galleryRepo';
 
 export const galleryApiHandler = async (
   req: NextApiRequest,
@@ -11,9 +10,9 @@ export const galleryApiHandler = async (
     throw new Error('Method not allowed');
   }
 
-  const galleryImages = await getGalleryImages();
+  const galleryMedia = await getGallery();
 
-  res.status(200).json(galleryImages);
+  res.status(200).json(galleryMedia);
 };
 
 export default galleryApiHandler;

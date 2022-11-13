@@ -50,9 +50,10 @@ model Contact {
 }
 
 model Gallery {
-  id       Int     @id
-  caption  String?
-  media_url String
+  id        Int    @id @default(autoincrement())
+  mediaUrl  String
+  mediaName String
+  mediaType String
 
   @@map("gallery")
 }
