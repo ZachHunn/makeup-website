@@ -1,7 +1,6 @@
-import { Gallery } from '@prisma/client';
 import prisma from '../utils/prismaClient';
 // @ts-ignore
-import { createServiceItems } from '../repository/servicesRepo';
+import { createServiceItems } from '../src/repository/servicesRepo';
 import { getMediaItemsFromStorgae, serviceItems } from './setupSeed';
 
 import { GalleryMedia } from './setupSeed';
