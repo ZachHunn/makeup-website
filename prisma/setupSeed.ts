@@ -62,7 +62,11 @@ export const getMediaItemsFromStorgae = async (
     .list()
     .then((data) =>
       data.data?.map((media) => {
+        const mediaUrlData = supabase.storage
+          .from(bucketName)
+          .getPublicUrl(media.name).data.publicUrl;
         const mediaData: GalleryMedia = {
+          mediaUrl: mediaUrlData,
           mediaName: media.name,
           mediaType: media.metadata.mimetype,
         };

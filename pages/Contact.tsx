@@ -1,11 +1,14 @@
 import { NextPage } from 'next';
 import { NavBar } from '../components/Navbar';
+import { Text } from '@nextui-org/react';
 
 const Contact: NextPage = (): JSX.Element => {
   return (
     <>
       <NavBar />
-      <h1>Contact</h1>
+      <Text h1 css={{ paddingLeft: '25px' }} size={60}>
+        Contact Me!
+      </Text>
     </>
   );
 };

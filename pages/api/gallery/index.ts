@@ -1,7 +1,6 @@
 import { Gallery } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getGallery } from '../../../repository/galleryRepo';
-import { supabase } from '../../../utils/supabaseClient';
 
 export const galleryApiHandler = async (
   req: NextApiRequest,

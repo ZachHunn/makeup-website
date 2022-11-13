@@ -16,6 +16,7 @@ async function seedGallery() {
     async (mediaInfo: GalleryMedia): Promise<GalleryMedia> => {
       return await prisma.gallery.create({
         data: {
+          mediaUrl: mediaInfo.mediaUrl,
           mediaName: mediaInfo.mediaName,
           mediaType: mediaInfo.mediaType,
         },

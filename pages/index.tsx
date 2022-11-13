@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Card, Grid, Loading } from '@nextui-org/react';
+import { Card, Grid, Loading, Text } from '@nextui-org/react';
 import { NavBar } from '../components/Navbar';
 import { useGetGalleryMedia } from './hooks/api/gallery';
 
@@ -14,6 +14,7 @@ export default function Home() {
           justifyContent: 'center',
           alignItems: 'center',
           height: '100%',
+          position: 'relative',
         }}
         size="xl"
         type="gradient"
@@ -35,22 +36,23 @@ export default function Home() {
       </header>
 
       <main>
-        <h1>Gallery</h1>
-        <Grid.Container gap={2} justify="center">
+        <Text h1 css={{ paddingLeft: '25px' }} size={60}>
+          Portfolio
+        </Text>
+        <Grid.Container gap={3} justify="center">
           {galleryQueryData?.map((media) => {
             const containsVideo = media.mediaType.includes('video');
             if (!containsVideo) {
               return (
                 <Grid key={media.id}>
-                  <Card css={{ height: '100%' }} isHoverable isPressable>
+                  <Card css={{ height: 'fit-content' }} isHoverable isPressable>
                     <Card.Body css={{ p: 0 }}>
                       <Card.Image
-                        css={{ height: '100%' }}
-                        objectFit="fill"
-                        width={200}
-                        height={200}
-                        src={media.mediaName}
-                        alt=""
+                        css={{ height: '281px' }}
+                        objectFit="cover"
+                        width={500}
+                        src={media.mediaUrl}
+                        alt={media.mediaName}
                       />
                     </Card.Body>
                   </Card>
@@ -59,16 +61,17 @@ export default function Home() {
             }
             return (
               <Grid key={media.id}>
-                <Card css={{ height: '100%' }} isHoverable isPressable>
+                <Card css={{ height: 'fit-content' }} isHoverable isPressable>
                   <Card.Body css={{ p: 0 }}>
-                    <Card.Image
-                      css={{ height: '100%' }}
-                      objectFit="fill"
-                      width={200}
-                      height={200}
-                      src={media.mediaName}
-                      alt=""
-                    />
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      style={{ width: '500px', height: '100%' }}
+                    >
+                      <source src={media.mediaUrl} type={media.mediaType} />
+                      {media.mediaName}
+                    </video>
                   </Card.Body>
                 </Card>
               </Grid>

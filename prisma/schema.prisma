@@ -50,7 +50,8 @@ model Contact {
 }
 
 model Gallery {
-  id        Int     @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
+  mediaUrl  String
   mediaName String
   mediaType String
 
