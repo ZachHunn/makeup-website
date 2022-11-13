@@ -2,7 +2,7 @@ import { Gallery } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getGallery } from '../../../repository/galleryRepo';
 
-export const galleryApiHandler = async (
+const galleryApiHandler = async (
   req: NextApiRequest,
   res: NextApiResponse<Gallery[]>,
 ) => {
