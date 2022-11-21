@@ -12,8 +12,8 @@ async function seedGallery() {
   const mediaInformation = [...photoFiles, ...videoFiles];
 
   return mediaInformation.forEach(
-    async (mediaInfo: GalleryMedia): Promise<GalleryMedia> => {
-      return await prisma.gallery.create({
+    (mediaInfo: GalleryMedia): Promise<GalleryMedia> => {
+      return prisma.gallery.create({
         data: {
           mediaUrl: mediaInfo.mediaUrl,
           mediaName: mediaInfo.mediaName,

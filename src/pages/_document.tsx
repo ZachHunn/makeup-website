@@ -7,6 +7,7 @@ import Document, {
   DocumentContext,
 } from 'next/document';
 import { CssBaseline } from '@nextui-org/react';
+import { NavBar } from '../components/Navbar';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -29,6 +30,9 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
+        <header>
+          <NavBar />
+        </header>
         <body>
           <Main />
           <NextScript />

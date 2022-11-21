@@ -1,7 +1,7 @@
 import { Gallery } from '@prisma/client';
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import { EUri } from '../../../../consts';
+import { EUri } from '../../../../const';
 
 export const galleryQueryKeys = {
   image: (id: number) => ['image', id],
