@@ -44,12 +44,6 @@ export const serviceItems: serviceItem[] = [
     description: 'This an a no eyeshadow makeup look.',
     price: 75,
   },
-  {
-    serviceName: 'Travel Fee',
-    description:
-      "Looking for a house call or on-site stylist? I'll come to you! Travel fees vary based on location, gas, and tolls. (Please Message me for details)",
-    price: 40,
-  },
 ];
 
 export type GalleryMedia = Omit<Gallery, 'id'>;
