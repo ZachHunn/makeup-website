@@ -1,9 +1,11 @@
 import prisma from '../utils/prismaClient';
 // @ts-ignore
 import { createServiceItems } from '../src/repository/servicesRepo';
-import { getMediaItemsFromStorgae, serviceItems } from './setupSeed';
-
-import { GalleryMedia } from './setupSeed';
+import {
+  getMediaItemsFromStorgae,
+  serviceItems,
+  GalleryMedia,
+} from './setupSeed';
 
 async function seedGallery() {
   const videoFiles = await getMediaItemsFromStorgae('videos');
