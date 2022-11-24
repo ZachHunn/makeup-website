@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { NextUIProvider } from '@nextui-org/react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { SSRProvider } from '@react-aria/ssr';
 
 const App = ({ Component, pageProps }: AppProps) => {

@@ -8,19 +8,21 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <Loading
-        css={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100%',
-          position: 'relative',
-        }}
-        size="xl"
-        type="gradient"
-      >
-        Loading
-      </Loading>
+      <>
+        <Loading
+          css={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            position: 'relative',
+          }}
+          size="xl"
+          type="gradient"
+        >
+          Loading
+        </Loading>
+      </>
     );
   }
 

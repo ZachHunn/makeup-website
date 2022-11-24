@@ -11,8 +11,8 @@ async function seedGallery() {
   const mediaInformation = await getMediaItemsFromStorgae('media');
 
   return mediaInformation.forEach(
-    (mediaInfo: GalleryMedia): Promise<GalleryMedia> => {
-      return prisma.gallery.create({
+    async (mediaInfo: GalleryMedia): Promise<GalleryMedia> => {
+      return await prisma.gallery.create({
         data: {
           mediaUrl: mediaInfo.mediaUrl,
           mediaName: mediaInfo.mediaName,

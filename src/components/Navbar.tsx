@@ -1,15 +1,10 @@
 import { Navbar, Text } from '@nextui-org/react';
-
-const navbarStyle = {
-  display: 'flex',
-  marginRight: 'auto',
-  marginLeft: 'auto',
-};
+import React from 'react';
 
 export const NavBar: React.FC = (): JSX.Element => {
   return (
     <Navbar shouldHideOnScroll variant="sticky">
-      <Navbar.Brand css={{ display: 'grid' }}>
+      <Navbar.Brand className="grid">
         <Text
           color="inherit"
           size="$2xl"
@@ -26,7 +21,7 @@ export const NavBar: React.FC = (): JSX.Element => {
         </Text>
       </Navbar.Brand>
       <Navbar.Content
-        css={navbarStyle}
+        className="mx-auto"
         enableCursorHighlight
         variant="underline"
       >

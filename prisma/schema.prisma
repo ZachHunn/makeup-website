@@ -33,9 +33,9 @@ model User {
 
 model ServiceItem {
   id          Int     @id @default(autoincrement())
-  serviceName String  @unique @map("service_name")
-  description String? @map("description")
-  price       Int     @map("price")
+  serviceName String @unique @map("service_name")
+  description String? 
+  price       Int    
 
   @@map("serviceitems")
 }
