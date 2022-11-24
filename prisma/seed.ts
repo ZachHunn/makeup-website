@@ -8,10 +8,7 @@ import {
 } from './setupSeed';
 
 async function seedGallery() {
-  const videoFiles = await getMediaItemsFromStorgae('videos');
-  const photoFiles = await getMediaItemsFromStorgae('photos');
-
-  const mediaInformation = [...photoFiles, ...videoFiles];
+  const mediaInformation = await getMediaItemsFromStorgae('media');
 
   return mediaInformation.forEach(
     (mediaInfo: GalleryMedia): Promise<GalleryMedia> => {
