@@ -2,11 +2,30 @@ import { Button, Card, Grid, Loading, Row, Text } from '@nextui-org/react';
 import { ServiceItem } from '@prisma/client';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import React from 'react';
 import { useGetServiceItems } from './hooks/api/services';
+import { ConfirmModal } from '../components/ConfirmModal';
 
 const Services: NextPage = (): JSX.Element => {
   const { isLoading, data: serviceItemsQueryData } = useGetServiceItems();
+  const [price, setPrice] = React.useState<number>(0);
+  const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
+
+  const travelFee = 30;
+
+  const handleYes = () => {
+    const priceWithTravelFee = price + travelFee;
+    setModalIsOpen(false);
+    router.push({ pathname: '/Booking' });
+    setPrice(0);
+  };
+
+  const handleNo = () => {
+    setModalIsOpen(false);
+    router.push({ pathname: '/Booking' });
+    setPrice(0);
+  };
 
   if (isLoading) {
     <Loading
@@ -59,10 +78,14 @@ const Services: NextPage = (): JSX.Element => {
                 <Row wrap="wrap" justify="space-between" align="center">
                   <Text className="text-lg pl-5">{`$${item.price}.00`}</Text>
                   <Button
-                    onClick={() => router.push('/Booking')}
+                    onClick={() => {
+                      setPrice(item.price);
+                      setModalIsOpen(true);
+                    }}
                     color="default"
                     className="pr-5"
                     size="xs"
+                    flat
                   >
                     <Text className="text-grey-500">Book Now</Text>
                   </Button>
@@ -72,6 +95,12 @@ const Services: NextPage = (): JSX.Element => {
           </Grid>
         ))}
       </Grid.Container>
+      <ConfirmModal
+        isOpen={modalIsOpen}
+        setIsOpen={setModalIsOpen}
+        handleYes={handleYes}
+        handleNo={handleNo}
+      />
     </>
   );
 };

@@ -3,7 +3,7 @@ import React from 'react';
 
 export const NavBar: React.FC = (): JSX.Element => {
   return (
-    <Navbar shouldHideOnScroll variant="sticky">
+    <Navbar shouldHideOnScroll isBordered variant="sticky">
       <Navbar.Brand className="grid">
         <Text
           color="inherit"
@@ -23,7 +23,7 @@ export const NavBar: React.FC = (): JSX.Element => {
       <Navbar.Content
         className="mx-auto"
         enableCursorHighlight
-        variant="underline"
+        variant="highlight-rounded"
       >
         <Navbar.Link href="/">Portfolio</Navbar.Link>
         <Navbar.Link href="/AboutPage">About</Navbar.Link>
