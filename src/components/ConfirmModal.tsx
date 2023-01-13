@@ -4,14 +4,12 @@ import { Button, Modal, Text } from '@nextui-org/react';
 type ConfirmDialigProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  handleYes: () => void;
-  handleNo: () => void;
+  handleClose: () => void;
 };
 export const ConfirmModal: FC<ConfirmDialigProps> = ({
   isOpen,
   setIsOpen,
-  handleYes,
-  handleNo,
+  handleClose,
 }): JSX.Element => {
   return (
     <div>
@@ -35,11 +33,8 @@ export const ConfirmModal: FC<ConfirmDialigProps> = ({
           </Text>
         </Modal.Body>
         <Modal.Footer>
-          <Button auto flat color="error" onClick={handleNo}>
-            No Travel Required
-          </Button>
-          <Button auto flat color="default" onClick={handleYes}>
-            Travel Required
+          <Button auto flat color="default" onClick={handleClose}>
+            OK
           </Button>
         </Modal.Footer>
       </Modal>

@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Customer } from 'square';
 import { z } from 'zod';
 import { client } from '../../../../utils/squareClient';
-import { createUsers } from '../../../repository/userRepo';
 
 export const customerPostSchema = z.object({
   id: z.string().uuid(),

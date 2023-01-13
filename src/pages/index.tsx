@@ -1,4 +1,4 @@
-import { Card, Grid, Loading, Text, Modal } from '@nextui-org/react';
+import { Card, Grid, Loading, Text } from '@nextui-org/react';
 import Head from 'next/head';
 import { useGetGalleryMedia } from './hooks/api/gallery';
 
@@ -54,6 +54,7 @@ export default function Home() {
                         width={500}
                         src={media.mediaUrl}
                         alt={media.mediaName}
+                        loading="lazy"
                       />
                     </Card.Body>
                   </Card>

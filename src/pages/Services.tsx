@@ -3,28 +3,19 @@ import { ServiceItem } from '@prisma/client';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useGetServiceItems } from './hooks/api/services';
 import { ConfirmModal } from '../components/ConfirmModal';
+import { useGetServiceItems } from './hooks/api/services';
 
 const Services: NextPage = (): JSX.Element => {
   const { isLoading, data: serviceItemsQueryData } = useGetServiceItems();
-  const [price, setPrice] = React.useState<number>(0);
   const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
 
-  const travelFee = 30;
-
-  const handleYes = () => {
-    const priceWithTravelFee = price + travelFee;
+  const handleClose = () => {
     setModalIsOpen(false);
-    router.push({ pathname: '/Booking' });
-    setPrice(0);
-  };
-
-  const handleNo = () => {
-    setModalIsOpen(false);
-    router.push({ pathname: '/Booking' });
-    setPrice(0);
+    router.push(
+      'https://squareup.com/appointments/book/10mjamah16g32e/LHG8WR1A3JCED/start',
+    );
   };
 
   if (isLoading) {
@@ -79,7 +70,6 @@ const Services: NextPage = (): JSX.Element => {
                   <Text className="text-lg pl-5">{`$${item.price}.00`}</Text>
                   <Button
                     onClick={() => {
-                      setPrice(item.price);
                       setModalIsOpen(true);
                     }}
                     color="default"
@@ -98,8 +88,7 @@ const Services: NextPage = (): JSX.Element => {
       <ConfirmModal
         isOpen={modalIsOpen}
         setIsOpen={setModalIsOpen}
-        handleYes={handleYes}
-        handleNo={handleNo}
+        handleClose={handleClose}
       />
     </>
   );

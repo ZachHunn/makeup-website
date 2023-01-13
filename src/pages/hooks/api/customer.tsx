@@ -6,7 +6,7 @@ import { EUri } from '../../../../const';
 
 export const customerQueryKeys = {
   customers: () => ['customers'],
-  customer: (id: number) => ['customer', id],
+  customer: (id: string) => ['customer', id],
 };
 
 export const useCreateCustomer = () => {

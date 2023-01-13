@@ -5,6 +5,7 @@ export enum EUri {
   SERVICES = '/api/services/',
   CUSTOMER = '/api/customer/',
   INVOICE = '/api/invoice/',
+  CATALOG = '/api/catalog/',
 }
 
 export enum ESerivice {
