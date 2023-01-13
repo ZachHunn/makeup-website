@@ -44,6 +44,11 @@ export const serviceItems: serviceItem[] = [
     description: 'This an a no eyeshadow makeup look.',
     price: 75,
   },
+  {
+    serviceName: 'Strip Lashes',
+    description: 'Apply Strip Lashes',
+    price: 15,
+  },
 ];
 
 export type GalleryMedia = Omit<Gallery, 'id'>;

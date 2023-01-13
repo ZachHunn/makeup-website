@@ -3,6 +3,9 @@ export enum EUri {
   CONTACT = '/api/contact/',
   GALLERY = '/api/gallery/',
   SERVICES = '/api/services/',
+  CUSTOMER = '/api/customer/',
+  INVOICE = '/api/invoice/',
+  CATALOG = '/api/catalog/',
 }
 
 export enum ESerivice {

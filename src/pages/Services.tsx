@@ -2,11 +2,21 @@ import { Button, Card, Grid, Loading, Row, Text } from '@nextui-org/react';
 import { ServiceItem } from '@prisma/client';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useGetServiceItems } from '../../src/pages/hooks/api/services';
+import React from 'react';
+import { ConfirmModal } from '../components/ConfirmModal';
+import { useGetServiceItems } from './hooks/api/services';
 
 const Services: NextPage = (): JSX.Element => {
   const { isLoading, data: serviceItemsQueryData } = useGetServiceItems();
+  const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
+
+  const handleClose = () => {
+    setModalIsOpen(false);
+    router.push(
+      'https://squareup.com/appointments/book/10mjamah16g32e/LHG8WR1A3JCED/start',
+    );
+  };
 
   if (isLoading) {
     <Loading
@@ -25,7 +35,7 @@ const Services: NextPage = (): JSX.Element => {
   }
   return (
     <>
-      <Text h1 css={{ paddingLeft: '25px' }} size={60}>
+      <Text h1 className="pl-12" size={60}>
         Services
       </Text>
       <Grid.Container gap={2} justify="center">
@@ -48,7 +58,7 @@ const Services: NextPage = (): JSX.Element => {
               </Card.Header>
               <Card.Body className="p-0">
                 <Card.Image
-                  className="w-100% h-100%"
+                  className="w-full h-full"
                   objectFit="cover"
                   src="makeup_brushes.png"
                   alt="#"
@@ -59,12 +69,15 @@ const Services: NextPage = (): JSX.Element => {
                 <Row wrap="wrap" justify="space-between" align="center">
                   <Text className="text-lg pl-5">{`$${item.price}.00`}</Text>
                   <Button
-                    onClick={() => router.push('/Booking')}
+                    onClick={() => {
+                      setModalIsOpen(true);
+                    }}
                     color="default"
                     className="pr-5"
                     size="xs"
+                    flat
                   >
-                    <Text className="text-gray-500">Book Now</Text>
+                    <Text className="text-grey-500">Book Now</Text>
                   </Button>
                 </Row>
               </Card.Footer>
@@ -72,6 +85,11 @@ const Services: NextPage = (): JSX.Element => {
           </Grid>
         ))}
       </Grid.Container>
+      <ConfirmModal
+        isOpen={modalIsOpen}
+        setIsOpen={setModalIsOpen}
+        handleClose={handleClose}
+      />
     </>
   );
 };

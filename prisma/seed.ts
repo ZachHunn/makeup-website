@@ -1,19 +1,18 @@
 import prisma from '../utils/prismaClient';
 // @ts-ignore
 import { createServiceItems } from '../src/repository/servicesRepo';
-import { getMediaItemsFromStorgae, serviceItems } from './setupSeed';
-
-import { GalleryMedia } from './setupSeed';
+import {
+  getMediaItemsFromStorgae,
+  serviceItems,
+  GalleryMedia,
+} from './setupSeed';
 
 async function seedGallery() {
-  const videoFiles = await getMediaItemsFromStorgae('videos');
-  const photoFiles = await getMediaItemsFromStorgae('photos');
-
-  const mediaInformation = [...photoFiles, ...videoFiles];
+  const mediaInformation = await getMediaItemsFromStorgae('media');
 
   return mediaInformation.forEach(
-    (mediaInfo: GalleryMedia): Promise<GalleryMedia> => {
-      return prisma.gallery.create({
+    async (mediaInfo: GalleryMedia): Promise<GalleryMedia> => {
+      return await prisma.gallery.create({
         data: {
           mediaUrl: mediaInfo.mediaUrl,
           mediaName: mediaInfo.mediaName,
