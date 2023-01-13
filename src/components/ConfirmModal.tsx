@@ -29,7 +29,7 @@ export const ConfirmModal: FC<ConfirmDialigProps> = ({
           <Text>
             If you require travel to you on the island of O&apos;ahu, a $30
             travel fee will be added to your total. If you require travel
-            somewhere, please contact me to discuss the details.
+            elsewhere, please contact me to discuss the details.
           </Text>
         </Modal.Body>
         <Modal.Footer>
