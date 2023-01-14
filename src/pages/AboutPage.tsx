@@ -1,13 +1,11 @@
 import { Image, Text } from '@nextui-org/react';
 import { NextPage } from 'next';
+import { PageTitle } from '../components/PageTitle';
 
 const AboutPage: NextPage = (): JSX.Element => {
   return (
     <>
-      <Text h1 css={{ paddingLeft: '25px' }} size={60}>
-        About Me!
-      </Text>
-      
+     <PageTitle name={'About Me!'} fontSize={60} />
       <Image
         css={{
           borderRadius: '50px',
@@ -21,7 +19,7 @@ const AboutPage: NextPage = (): JSX.Element => {
         alt="makeup artist photo"
       />
 
-      <Text className="px-12 pb-10 mt-8 w-1/2 mx-auto float">
+      <Text className="px-12 pb-10 mt-8 md:w-3/4 md:mx-auto float sm:w-full h-1/2 ">
         I am Jeanetta, a talented and experienced makeup artist who has been in
         the beauty industry since 2017. With a passion for making people look
         and feel their best, I have honed my skills through years of practice

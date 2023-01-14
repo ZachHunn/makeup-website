@@ -1,10 +1,12 @@
-import { Button, Card, Grid, Loading, Row, Text } from '@nextui-org/react';
+import { Button, Card, Grid, Row, Text } from '@nextui-org/react';
 import { ServiceItem } from '@prisma/client';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { ConfirmModal } from '../components/ConfirmModal';
 import { useGetServiceItems } from './hooks/api/services';
+import { LoadingLayout } from '../components/LoadingLayout';
+import {PageTitle} from '../components/PageTitle'
 
 const Services: NextPage = (): JSX.Element => {
   const { isLoading, data: serviceItemsQueryData } = useGetServiceItems();
@@ -19,39 +21,22 @@ const Services: NextPage = (): JSX.Element => {
   };
 
   if (isLoading) {
-    <Loading
-      css={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        position: 'float',
-      }}
-      size="xl"
-      type="gradient"
-    >
-      Loading
-    </Loading>;
+   <LoadingLayout />
+  
   }
+  
   return (
     <>
-      <Text h1 className="pl-12" size={60}>
-        Services
-      </Text>
-      <Grid.Container gap={2} justify="center">
+      <PageTitle name={'Services'} fontSize={60} />
+      <div className='md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1'>
         {serviceItemsQueryData?.map((item: ServiceItem) => (
-          <Grid key={item.id}>
+          <div key={item.id} className='p-6'>
             <Card
-              css={{
-                width: '100%',
-                minWidth: '320px',
-                maxWidth: '400px',
-                maxHeight: '400px',
-                minHeight: '320px',
-                border: 'none',
-              }}
+            className='border-none h-full sm:min-h-[320px]'
             >
-              <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
+              <Card.Header 
+              className='md:absolute md:z-10 md:top-1 absolute z-10 '
+             >
                 <Text className="text-xl" color="white">
                   {item.serviceName}
                 </Text>
@@ -82,9 +67,9 @@ const Services: NextPage = (): JSX.Element => {
                 </Row>
               </Card.Footer>
             </Card>
-          </Grid>
+          </div>
         ))}
-      </Grid.Container>
+      </div>
       <ConfirmModal
         isOpen={modalIsOpen}
         setIsOpen={setModalIsOpen}
