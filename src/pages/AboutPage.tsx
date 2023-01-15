@@ -5,7 +5,7 @@ import { PageTitle } from '../components/PageTitle';
 const AboutPage: NextPage = (): JSX.Element => {
   return (
     <>
-     <PageTitle name={'About Me!'} fontSize={60} />
+      <PageTitle name={'About Me!'} fontSize={60} />
       <Image
         css={{
           borderRadius: '50px',
@@ -28,20 +28,20 @@ const AboutPage: NextPage = (): JSX.Element => {
         This diverse experience has allowed me to develop a versatile style and
         adapt to different skin types and cultural backgrounds. I have worked on
         a wide range of clients, from bridal parties to models for photoshoots.
-        I stay current on the latest trends and techniques, constantly seeking out new inspiration
-        and education to improve my skills. One of the things that sets me apart
-        is my ability to listen to my clients and understand their unique needs
-        and preferences. I take the time to consult with each client, discussing
-        their desired look and ensuring that they are completely satisfied with
-        the final result. With a keen attention to detail and a natural talent
-        for enhancing natural beauty, I am dedicated to providing the highest
-        level of service and creating looks that make my clients feel confident
-        and beautiful. I am also dedicated to using high-quality,
-        professional-grade products to ensure that my clients&apos; makeup lasts all
-        day or night. If you are in need of a makeup artist for a special
-        occasion or photoshoot, I am the perfect choice. With my experience and
-        skill, I will help you achieve the look you desire, leaving you feeling
-        confident and beautiful.
+        I stay current on the latest trends and techniques, constantly seeking
+        out new inspiration and education to improve my skills. One of the
+        things that sets me apart is my ability to listen to my clients and
+        understand their unique needs and preferences. I take the time to
+        consult with each client, discussing their desired look and ensuring
+        that they are completely satisfied with the final result. With a keen
+        attention to detail and a natural talent for enhancing natural beauty, I
+        am dedicated to providing the highest level of service and creating
+        looks that make my clients feel confident and beautiful. I am also
+        dedicated to using high-quality, professional-grade products to ensure
+        that my clients&apos; makeup lasts all day or night. If you are in need
+        of a makeup artist for a special occasion or photoshoot, I am the
+        perfect choice. With my experience and skill, I will help you achieve
+        the look you desire, leaving you feeling confident and beautiful.
       </Text>
     </>
   );

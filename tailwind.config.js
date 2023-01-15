@@ -14,6 +14,7 @@ module.exports = {
       ivory: '#FFFEED',
       blanchedAlmond: '#FFEBC9',
       bubbleGum: '#FFC4CD',
+      pink: '#ff4ecd',
     },
   },
   plugins: [],

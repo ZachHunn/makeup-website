@@ -2,7 +2,7 @@ import { Card } from '@nextui-org/react';
 import Head from 'next/head';
 import { LoadingLayout } from '../components/LoadingLayout';
 import { PageTitle } from '../components/PageTitle';
-import { useGetGalleryMedia } from './hooks/api/gallery';
+import { useGetGalleryMedia } from '../hooks/api/gallery';
 
 export default function Home() {
   const { isLoading, data: galleryQueryData } = useGetGalleryMedia();
@@ -25,14 +25,14 @@ export default function Home() {
           const containsVideo = media.mediaType.includes('video');
           if (!containsVideo) {
             return (
-              <div key={media.id} className="md:px-2 px-8 py-4 h-full sm:min-h-[320px]">
-                <Card
-                  className="border-none align-top "
-                  isHoverable
-                >
+              <div
+                key={media.id}
+                className="md:px-2 px-8 py-4 h-full sm:min-h-[320px]"
+              >
+                <Card className="border-none align-top " isHoverable>
                   <Card.Body className="p-0">
                     <Card.Image
-                    className='h-[450px] w-full'
+                      className="h-[450px] w-full"
                       objectFit="fill"
                       src={media.mediaUrl}
                       alt={media.mediaName}
@@ -44,17 +44,18 @@ export default function Home() {
             );
           }
           return (
-            <div key={media.id} className="md:px-2 px-8 py-4 h-full min-h-[320px]">
-              <Card
-                className="border-none align-top"
-                isHoverable
-              >
+            <div
+              key={media.id}
+              className="md:px-2 px-8 py-4 h-full min-h-[320px]"
+            >
+              <Card className="border-none align-top" isHoverable>
                 <Card.Body className="p-0">
                   <video
+                    controls
                     autoPlay
                     loop
                     muted
-                    className='h-[450px] w-full object-fill'
+                    className="h-[450px] w-full object-fill"
                   >
                     <source src={media.mediaUrl} type={media.mediaType} />
                   </video>

@@ -1,12 +1,12 @@
-import { Button, Card, Grid, Row, Text } from '@nextui-org/react';
+import { Button, Card, Row, Text } from '@nextui-org/react';
 import { ServiceItem } from '@prisma/client';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { ConfirmModal } from '../components/ConfirmModal';
-import { useGetServiceItems } from './hooks/api/services';
 import { LoadingLayout } from '../components/LoadingLayout';
-import {PageTitle} from '../components/PageTitle'
+import { PageTitle } from '../components/PageTitle';
+import { useGetServiceItems } from '../hooks/api/services';
 
 const Services: NextPage = (): JSX.Element => {
   const { isLoading, data: serviceItemsQueryData } = useGetServiceItems();
@@ -21,22 +21,17 @@ const Services: NextPage = (): JSX.Element => {
   };
 
   if (isLoading) {
-   <LoadingLayout />
-  
+    <LoadingLayout />;
   }
-  
+
   return (
     <>
       <PageTitle name={'Services'} fontSize={60} />
-      <div className='md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1'>
+      <div className="md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1">
         {serviceItemsQueryData?.map((item: ServiceItem) => (
-          <div key={item.id} className='p-6'>
-            <Card
-            className='border-none h-full sm:min-h-[320px]'
-            >
-              <Card.Header 
-              className='md:absolute md:z-10 md:top-1 absolute z-10 '
-             >
+          <div key={item.id} className="p-6">
+            <Card className="border-none h-full sm:min-h-[320px]">
+              <Card.Header className="md:absolute md:z-10 md:top-1 absolute z-10 ">
                 <Text className="text-xl" color="white">
                   {item.serviceName}
                 </Text>
@@ -50,7 +45,7 @@ const Services: NextPage = (): JSX.Element => {
                 />
               </Card.Body>
               <Card.Divider />
-              <Card.Footer css={{ justifyItems: 'flex-start' }}>
+              <Card.Footer>
                 <Row wrap="wrap" justify="space-between" align="center">
                   <Text className="text-lg pl-5">{`$${item.price}.00`}</Text>
                   <Button

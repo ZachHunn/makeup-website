@@ -5,6 +5,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import React, { useState } from 'react';
 import { SSRProvider } from '@react-aria/ssr';
 import { NavBar } from '../components/Navbar';
+import { SnackbarProvider } from 'notistack';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(() => new QueryClient());
@@ -13,8 +14,16 @@ const App = ({ Component, pageProps }: AppProps) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <NextUIProvider>
-            <NavBar />
-            <Component {...pageProps} />
+            <SnackbarProvider
+              maxSnack={3}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <NavBar />
+              <Component {...pageProps} />
+            </SnackbarProvider>
           </NextUIProvider>
         </Hydrate>
       </QueryClientProvider>
