@@ -7,6 +7,9 @@ const nextConfig = {
     config.resolve.fallback = { fs: false, module: false, path: false };
     return config;
   },
+  sassOptions: {
+    includePaths: ['/src/**/*'],
+  },
 };
 
 module.exports = nextConfig;

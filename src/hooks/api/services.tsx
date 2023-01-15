@@ -2,7 +2,7 @@ import { ServiceItem } from '@prisma/client';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import { CatalogObject } from 'square';
-import { EUri } from '../../../../const';
+import { EUri } from '../../../const';
 
 export const serviceItemQueryKeys = {
   serviceItems: () => ['items'],

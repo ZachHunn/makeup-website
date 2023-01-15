@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { useSnackbar } from 'notistack';
 import { useMutation, useQueryClient } from 'react-query';
 import { Customer } from 'square';
-import { EUri } from '../../../../const';
+import { EUri } from '../../../const';
 
 export const customerQueryKeys = {
   customers: () => ['customers'],

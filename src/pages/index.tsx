@@ -1,88 +1,70 @@
-import { Card, Grid, Loading, Text } from '@nextui-org/react';
+import { Card } from '@nextui-org/react';
 import Head from 'next/head';
-import { useGetGalleryMedia } from './hooks/api/gallery';
+import { LoadingLayout } from '../components/LoadingLayout';
+import { PageTitle } from '../components/PageTitle';
+import { useGetGalleryMedia } from '../hooks/api/gallery';
 
 export default function Home() {
   const { isLoading, data: galleryQueryData } = useGetGalleryMedia();
 
   if (isLoading) {
-    return (
-      <>
-        <Loading
-          css={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100%',
-            position: 'relative',
-          }}
-          size="xl"
-          type="gradient"
-        >
-          Loading
-        </Loading>
-      </>
-    );
+    return <LoadingLayout />;
   }
 
   return (
-    <div>
+    <>
       <Head>
         <title>Makeup By J&apos;Victoria</title>
         <meta name="description" content="Makeup By J'Victoria Website" />
         <link rel="icon" href="/img/favicon.ico" />
       </Head>
 
-      <main>
-        <Text h1 css={{ paddingLeft: '25px' }} size={60}>
-          Portfolio
-        </Text>
-        <Grid.Container gap={3} justify="center">
-          {galleryQueryData?.map((media) => {
-            const containsVideo = media.mediaType.includes('video');
-            if (!containsVideo) {
-              return (
-                <Grid key={media.id}>
-                  <Card
-                    css={{ height: 'fit-content', border: 'none' }}
-                    isHoverable
-                  >
-                    <Card.Body css={{ p: 0 }}>
-                      <Card.Image
-                        css={{ height: '281px' }}
-                        objectFit="cover"
-                        width={500}
-                        src={media.mediaUrl}
-                        alt={media.mediaName}
-                        loading="lazy"
-                      />
-                    </Card.Body>
-                  </Card>
-                </Grid>
-              );
-            }
+      <PageTitle name={'Portfolio'} fontSize={60} />
+      <div className="md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1 pb-4">
+        {galleryQueryData?.map((media) => {
+          const containsVideo = media.mediaType.includes('video');
+          if (!containsVideo) {
             return (
-              <Grid key={media.id}>
-                <Card
-                  css={{ height: 'fit-content', border: 'none' }}
-                  isHoverable
-                >
-                  <Card.Body css={{ p: 0 }}>
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      style={{ width: '500px', height: '100%' }}
-                    >
-                      <source src={media.mediaUrl} type={media.mediaType} />
-                    </video>
+              <div
+                key={media.id}
+                className="md:px-2 px-8 py-4 h-full sm:min-h-[320px]"
+              >
+                <Card className="border-none align-top " isHoverable>
+                  <Card.Body className="p-0">
+                    <Card.Image
+                      className="h-[450px] w-full"
+                      objectFit="fill"
+                      src={media.mediaUrl}
+                      alt={media.mediaName}
+                      loading="lazy"
+                    />
                   </Card.Body>
                 </Card>
-              </Grid>
+              </div>
             );
-          })}
-        </Grid.Container>
-      </main>
-    </div>
+          }
+          return (
+            <div
+              key={media.id}
+              className="md:px-2 px-8 py-4 h-full min-h-[320px]"
+            >
+              <Card className="border-none align-top" isHoverable>
+                <Card.Body className="p-0">
+                  <video
+                    controls
+                    autoPlay
+                    loop
+                    muted
+                    className="h-[450px] w-full object-fill"
+                  >
+                    <source src={media.mediaUrl} type={media.mediaType} />
+                  </video>
+                </Card.Body>
+              </Card>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
