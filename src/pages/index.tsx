@@ -21,49 +21,53 @@ export default function Home() {
 
       <PageTitle name={'Portfolio'} fontSize={60} />
       <div className="md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1 pb-4">
-        {galleryQueryData?.map((media) => {
-          const containsVideo = media.mediaType.includes('video');
-          if (!containsVideo) {
+        {galleryQueryData
+          ?.sort((currentObj, nextObj) => {
+            return nextObj.id - currentObj.id;
+          })
+          ?.map((media) => {
+            const containsVideo = media.mediaType.includes('video');
+            if (!containsVideo) {
+              return (
+                <div
+                  key={media.id}
+                  className="md:px-2 px-8 py-4 h-full sm:min-h-[320px]"
+                >
+                  <Card className="border-none align-top " isHoverable>
+                    <Card.Body className="p-0">
+                      <Card.Image
+                        className="h-[450px] w-full"
+                        objectFit="fill"
+                        src={media.mediaUrl}
+                        alt={media.mediaName}
+                        loading="lazy"
+                      />
+                    </Card.Body>
+                  </Card>
+                </div>
+              );
+            }
             return (
               <div
                 key={media.id}
-                className="md:px-2 px-8 py-4 h-full sm:min-h-[320px]"
+                className="md:px-2 px-8 py-4 h-full min-h-[320px]"
               >
-                <Card className="border-none align-top " isHoverable>
+                <Card className="border-none align-top" isHoverable>
                   <Card.Body className="p-0">
-                    <Card.Image
-                      className="h-[450px] w-full"
-                      objectFit="fill"
-                      src={media.mediaUrl}
-                      alt={media.mediaName}
-                      loading="lazy"
-                    />
+                    <video
+                      controls
+                      autoPlay
+                      loop
+                      muted
+                      className="h-[450px] w-full object-fill"
+                    >
+                      <source src={media.mediaUrl} type={media.mediaType} />
+                    </video>
                   </Card.Body>
                 </Card>
               </div>
             );
-          }
-          return (
-            <div
-              key={media.id}
-              className="md:px-2 px-8 py-4 h-full min-h-[320px]"
-            >
-              <Card className="border-none align-top" isHoverable>
-                <Card.Body className="p-0">
-                  <video
-                    controls
-                    autoPlay
-                    loop
-                    muted
-                    className="h-[450px] w-full object-fill"
-                  >
-                    <source src={media.mediaUrl} type={media.mediaType} />
-                  </video>
-                </Card.Body>
-              </Card>
-            </div>
-          );
-        })}
+          })}
       </div>
     </>
   );
