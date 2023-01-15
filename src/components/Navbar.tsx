@@ -38,7 +38,6 @@ export const NavBar: React.FC = (): JSX.Element => {
 
         <Navbar.Content
           className="mx-auto hidden md:flex"
-          enableCursorHighlight
           variant="highlight-rounded"
         >
           {NavbarLinks.map((link) => {

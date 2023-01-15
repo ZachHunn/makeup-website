@@ -16,8 +16,8 @@ export const serviceItems: serviceItem[] = [
   {
     serviceName: 'Bridal Makeup',
     description:
-      'This package starts at $160. Message me for more information and pricing about wedding party packages.',
-    price: 160,
+      'This package starts at $165. Message me for more information and pricing about wedding party packages.',
+    price: 165,
   },
   {
     serviceName: 'Eyes Only',
@@ -43,11 +43,6 @@ export const serviceItems: serviceItem[] = [
     serviceName: 'Basic Makeup Application',
     description: 'This an a no eyeshadow makeup look.',
     price: 75,
-  },
-  {
-    serviceName: 'Strip Lashes',
-    description: 'Apply Strip Lashes',
-    price: 15,
   },
 ];
 
