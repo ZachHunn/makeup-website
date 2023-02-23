@@ -2,6 +2,7 @@ import { Card } from '@nextui-org/react';
 import { LoadingLayout } from '../components/LoadingLayout';
 import { PageTitle } from '../components/PageTitle';
 import { useGetGalleryMedia } from '../hooks/api/gallery';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default function Home() {
   const { isLoading, data: galleryQueryData } = useGetGalleryMedia();
@@ -74,4 +75,15 @@ export default function Home() {
       </div>
     </>
   );
+}
+//@ts-ignore
+export async function getServerSideProps({ req, res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59',
+  );
+
+  return {
+    props: {},
+  };
 }
