@@ -1,5 +1,4 @@
 import { Card } from '@nextui-org/react';
-import Head from 'next/head';
 import { LoadingLayout } from '../components/LoadingLayout';
 import { PageTitle } from '../components/PageTitle';
 import { useGetGalleryMedia } from '../hooks/api/gallery';
@@ -13,12 +12,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Makeup By J&apos;Victoria</title>
-        <meta name="description" content="Makeup By J'Victoria Website" />
-        <link rel="icon" href="/img/favicon.ico" />
-      </Head>
-
       <PageTitle name={'Portfolio'} fontSize={60} />
       <div className="md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1 pb-4">
         {galleryQueryData
@@ -36,11 +29,15 @@ export default function Home() {
                   <Card className="border-none align-top " isHoverable>
                     <Card.Body className="p-0">
                       <Card.Image
-                        className="h-[450px] w-full"
-                        objectFit="fill"
+                        css={{
+                          height: '450px',
+                          width: '100%',
+                          background: 'Gray',
+                          aspectRatio: '16/9',
+                          objectFit: 'cover',
+                        }}
                         src={media.mediaUrl}
                         alt={media.mediaName}
-                        loading="lazy"
                       />
                     </Card.Body>
                   </Card>
@@ -59,7 +56,13 @@ export default function Home() {
                       autoPlay
                       loop
                       muted
-                      className="h-[450px] w-full object-fill"
+                      style={{
+                        height: '450px',
+                        width: '100%',
+                        background: 'Gray',
+                        aspectRatio: '16/9',
+                        objectFit: 'cover',
+                      }}
                     >
                       <source src={media.mediaUrl} type={media.mediaType} />
                     </video>

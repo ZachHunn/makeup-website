@@ -38,10 +38,10 @@ const Services: NextPage = (): JSX.Element => {
               </Card.Header>
               <Card.Body className="p-0">
                 <Card.Image
-                  className="w-full h-full"
-                  objectFit="cover"
+                  className="w-full h-full object-cover"
+                  // objectFit="cover"
                   src="makeup_brushes.png"
-                  alt="#"
+                  alt="Makeup Brushes"
                 />
               </Card.Body>
               <Card.Divider />
