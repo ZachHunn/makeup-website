@@ -34,6 +34,7 @@ export default function Home() {
                           height: '450px',
                           width: '100%',
                           background: 'Gray',
+                          aspectRatio: '16/9',
                           objectFit: 'cover',
                         }}
                         src={media.mediaUrl}
