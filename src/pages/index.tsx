@@ -34,7 +34,6 @@ export default function Home() {
                           height: '450px',
                           width: '100%',
                           background: 'Gray',
-                          aspectRatio: '16/9',
                           objectFit: 'cover',
                         }}
                         src={media.mediaUrl}
@@ -61,7 +60,6 @@ export default function Home() {
                         height: '450px',
                         width: '100%',
                         background: 'Gray',
-                        aspectRatio: '16/9',
                         objectFit: 'cover',
                       }}
                     >
@@ -75,15 +73,4 @@ export default function Home() {
       </div>
     </>
   );
-}
-//@ts-ignore
-export async function getServerSideProps({ req, res }) {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59',
-  );
-
-  return {
-    props: {},
-  };
 }
