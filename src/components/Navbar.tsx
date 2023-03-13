@@ -5,9 +5,9 @@ import { useRouter } from 'next/router';
 export const NavBar: React.FC = (): JSX.Element => {
   const router = useRouter();
   const NavbarLinks = [
-    { Portfolio: '/' },
+    { Services: '/' },
+    { Portfolio: '/Portfolio' },
     { About: '/AboutPage' },
-    { Services: '/Services' },
     { Contact: '/Contact' },
   ];
 
