@@ -1,6 +1,5 @@
 import { Button, Card, Row, Text } from '@nextui-org/react';
 import { ServiceItem } from '@prisma/client';
-import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { ConfirmModal } from '../components/ConfirmModal';
@@ -9,7 +8,7 @@ import { PageTitle } from '../components/PageTitle';
 import { useGetServiceItems } from '../hooks/api/services';
 
 export default function Home() {
-  const { isLoading, data: serviceItemsQueryData } = useGetServiceItems();
+  const { status, data: serviceItemsQueryData } = useGetServiceItems();
   const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
 
@@ -20,8 +19,8 @@ export default function Home() {
     );
   };
 
-  if (isLoading) {
-    <LoadingLayout />;
+  if (status === 'loading') {
+    return <LoadingLayout />;
   }
 
   return (
