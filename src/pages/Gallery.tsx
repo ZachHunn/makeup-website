@@ -4,7 +4,7 @@ import { PageTitle } from '../components/PageTitle';
 import { useGetGalleryMedia } from '../hooks/api/gallery';
 import { NextPage } from 'next';
 
-const Portfolio: NextPage = (): JSX.Element => {
+const Gallery: NextPage = (): JSX.Element => {
   const { isLoading, data: galleryQueryData } = useGetGalleryMedia();
 
   if (isLoading) {
@@ -13,7 +13,7 @@ const Portfolio: NextPage = (): JSX.Element => {
 
   return (
     <>
-      <PageTitle name={'Portfolio'} fontSize={60} />
+      <PageTitle name={'Gallery'} fontSize={60} />
       <div className="md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1 pb-4">
         {galleryQueryData
           ?.sort((currentObj, nextObj) => {
@@ -76,4 +76,4 @@ const Portfolio: NextPage = (): JSX.Element => {
   );
 };
 
-export default Portfolio;
+export default Gallery;
