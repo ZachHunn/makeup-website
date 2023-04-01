@@ -1,74 +1,79 @@
-import { Button, Card, Row, Text } from '@nextui-org/react';
-import { ServiceItem } from '@prisma/client';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { ConfirmModal } from '../components/ConfirmModal';
+import { Card } from '@nextui-org/react';
 import { LoadingLayout } from '../components/LoadingLayout';
 import { PageTitle } from '../components/PageTitle';
-import { useGetServiceItems } from '../hooks/api/services';
+import { useGetGalleryMedia } from '../hooks/api/gallery';
+import { NextPage } from 'next';
 
-export default function Home() {
-  const { status, data: serviceItemsQueryData } = useGetServiceItems();
-  const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
-  const router = useRouter();
+const Gallery: NextPage = (): JSX.Element => {
+  const { isLoading, data: galleryQueryData } = useGetGalleryMedia();
 
-  const handleClose = () => {
-    setModalIsOpen(false);
-    router.push(
-      'https://squareup.com/appointments/book/10mjamah16g32e/LHG8WR1A3JCED/start',
-    );
-  };
-
-  if (status === 'loading') {
+  if (isLoading) {
     return <LoadingLayout />;
   }
 
   return (
     <>
-      <PageTitle name={'Services'} fontSize={60} />
-      <div className="md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1">
-        {serviceItemsQueryData?.map((item: ServiceItem) => (
-          <div key={item.id} className="p-6">
-            <Card className="border-none h-full sm:min-h-[320px]">
-              <Card.Header className="md:absolute md:z-10 md:top-1 absolute z-10 ">
-                <Text className="text-xl" color="white">
-                  {item.serviceName}
-                </Text>
-              </Card.Header>
-              <Card.Body className="p-0">
-                <Card.Image
-                  className="w-full h-full bg-gray-500"
-                  objectFit="cover"
-                  src="makeup_brushes.png"
-                  alt="Makeup Brushes"
-                />
-              </Card.Body>
-              <Card.Divider />
-              <Card.Footer>
-                <Row wrap="wrap" justify="space-between" align="center">
-                  <Text className="text-lg pl-5">{`$${item.price}.00`}</Text>
-                  <Button
-                    onClick={() => {
-                      setModalIsOpen(true);
-                    }}
-                    color="default"
-                    className="pr-5"
-                    size="xs"
-                    flat
-                  >
-                    <Text className="text-grey-500">Book Now</Text>
-                  </Button>
-                </Row>
-              </Card.Footer>
-            </Card>
-          </div>
-        ))}
+      <PageTitle name={'Gallery'} fontSize={60} />
+      <div className="md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1 pb-4">
+        {galleryQueryData
+          ?.sort((currentObj, nextObj) => {
+            return nextObj.id - currentObj.id;
+          })
+          ?.map((media) => {
+            const containsVideo = media.mediaType.includes('video');
+            if (!containsVideo) {
+              return (
+                <div
+                  key={media.id}
+                  className="md:px-2 px-8 py-4 h-full sm:min-h-[320px]"
+                >
+                  <Card className="border-none align-top " isHoverable>
+                    <Card.Body className="p-0">
+                      <Card.Image
+                        css={{
+                          height: '450px',
+                          width: '100%',
+                          background: 'Gray',
+                          aspectRatio: '16/9',
+                          objectFit: 'cover',
+                        }}
+                        src={media.mediaUrl}
+                        alt={media.mediaName}
+                      />
+                    </Card.Body>
+                  </Card>
+                </div>
+              );
+            }
+            return (
+              <div
+                key={media.id}
+                className="md:px-2 px-8 py-4 h-full min-h-[320px]"
+              >
+                <Card className="border-none align-top" isHoverable>
+                  <Card.Body className="p-0">
+                    <video
+                      controls
+                      autoPlay
+                      loop
+                      muted
+                      style={{
+                        height: '450px',
+                        width: '100%',
+                        background: 'Gray',
+                        objectFit: 'cover',
+                      }}
+                    >
+                      <source src={media.mediaUrl} type={media.mediaType} />
+                    </video>
+                  </Card.Body>
+                </Card>
+              </div>
+            );
+          })}
       </div>
-      <ConfirmModal
-        isOpen={modalIsOpen}
-        setIsOpen={setModalIsOpen}
-        handleClose={handleClose}
-      />
     </>
   );
-}
+};
+
+export default Gallery;

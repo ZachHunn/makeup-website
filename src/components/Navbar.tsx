@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 export const NavBar: React.FC = (): JSX.Element => {
   const router = useRouter();
   const NavbarLinks = [
-    { Services: '/' },
-    { Gallery: '/Gallery' },
+    { Gallery: '/' },
+    { Services: '/Services' },
     { About: '/AboutPage' },
     { Contact: '/Contact' },
   ];
@@ -41,7 +41,6 @@ export const NavBar: React.FC = (): JSX.Element => {
           variant="highlight-rounded"
         >
           {NavbarLinks.map((link) => {
-            console.log(link);
             return Object.entries(link).map(([linkText, href]) => {
               return (
                 <Navbar.Link key={linkText} href={href}>
