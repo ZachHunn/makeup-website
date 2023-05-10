@@ -21,15 +21,18 @@ export const ConfirmModal: FC<ConfirmDialigProps> = ({
       >
         <Modal.Header>
           <Text id="modal-title" size={18}>
-            Travel Fee
+            Travel Appointments
           </Text>
         </Modal.Header>
 
         <Modal.Body>
+          <Text className="text-center font-bold">
+            *Travel must be booked 3-5 days in advance.*
+          </Text>
           <Text>
-            If you need me to travel to you on O&apos;ahu, there will be an
-            additional $30 charge. For travel to other locations, please get in
-            touch with me to go over the specifics.
+            If you require travel to you on O&apos;ahu, there will be an
+            additional $30 charge. For travel to other islands or locations,
+            please get in touch with me to go over the specifics.
           </Text>
         </Modal.Body>
         <Modal.Footer>
