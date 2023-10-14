@@ -1,5 +1,12 @@
-import { Button, Card, Row, Text } from '@nextui-org/react';
-import { ServiceItem } from '@prisma/client';
+'use client';
+import {
+  Button,
+  Card,
+  CardBody,
+  Divider,
+  CardFooter,
+  CardHeader,
+} from '@nextui-org/react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -26,28 +33,28 @@ const Services: NextPage = (): JSX.Element => {
 
   return (
     <>
-      <PageTitle name={'Services'} fontSize={60} />
+      <PageTitle name={'Services'} />
       <div className="md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1">
-        {serviceItemsQueryData?.map((item: ServiceItem) => (
+        {serviceItemsQueryData?.map((item) => (
           <div key={item.id} className="p-6">
             <Card className="border-none h-full sm:min-h-[320px]">
-              <Card.Header className="md:absolute md:z-10 md:top-1 absolute z-10 ">
-                <Text className="text-xl" color="white">
+              <CardHeader className="md:absolute md:z-10 md:top-1 absolute z-10 ">
+                <p className="text-xl" color="white">
                   {item.serviceName}
-                </Text>
-              </Card.Header>
-              <Card.Body className="p-0">
+                </p>
+              </CardHeader>
+              <CardBody className="p-0">
                 <Card.Image
                   className="w-full h-full bg-gray-500"
                   objectFit="cover"
                   src="makeup_brushes.png"
                   alt="Makeup Brushes"
                 />
-              </Card.Body>
-              <Card.Divider />
-              <Card.Footer>
-                <Row wrap="wrap" justify="space-between" align="center">
-                  <Text className="text-lg pl-5">{`$${item.price}.00`}</Text>
+              </CardBody>
+              <Divider />
+              <CardFooter>
+                <div className="flex justify-between flex-wrap">
+                  <p className="text-lg pl-5">{`$${item.price}.00`}</p>
                   <Button
                     onClick={() => {
                       setModalIsOpen(true);
@@ -57,10 +64,10 @@ const Services: NextPage = (): JSX.Element => {
                     size="xs"
                     flat
                   >
-                    <Text className="text-grey-500">Book Now</Text>
+                    <p className="text-grey-500">Book Now</p>
                   </Button>
-                </Row>
-              </Card.Footer>
+                </div>
+              </CardFooter>
             </Card>
           </div>
         ))}

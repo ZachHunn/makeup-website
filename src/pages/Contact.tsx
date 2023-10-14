@@ -57,7 +57,7 @@ const Contact: NextPage = (): JSX.Element => {
 
   return (
     <>
-      <PageTitle name={'Contact Me!'} fontSize={60} />
+      <PageTitle name={'Contact Me!'} />
       <Card className="md:w-3/4 h-3/4 mx-auto md:mt-5 border-none mb-10  ">
         <Card.Header>
           <Text

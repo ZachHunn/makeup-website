@@ -10,6 +10,15 @@ const nextConfig = {
   sassOptions: {
     includePaths: ['/src/**/*'],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'supbase.co',
+        port: '',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
