@@ -1,7 +1,5 @@
-import { Card, FormElement, Input, Text, Textarea } from '@nextui-org/react';
 import { NextPage } from 'next';
-import { ChangeEvent, useState } from 'react';
-import { PageTitle } from '../components/PageTitle';
+import { ChangeEvent, useState, Form } from 'react';
 import { useCreateContactEmail } from '../hooks/api/contact';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
@@ -56,80 +54,71 @@ const Contact: NextPage = (): JSX.Element => {
     formData.message === '';
 
   return (
-    <>
-      <PageTitle name={'Contact Me!'} />
-      <Card className="md:w-3/4 h-3/4 mx-auto md:mt-5 border-none mb-10  ">
-        <Card.Header>
-          <Text
-            css={{ fontFamily: 'Barlow Condensed, sans-serif' }}
-            size={50}
-            className="mx-auto tracking-wider"
-          >
-            Get In Touch
-          </Text>
-        </Card.Header>
-        <Card.Body>
-          <form id="contact-form" className="w-full pt-3" method="post">
-            <div className="flex flex-col md:w-2/3 space-y-8 mx-auto">
-              <Input
-                required
-                labelPlaceholder="Full Name"
-                onChange={(e: ChangeEvent<FormElement>) => {
-                  setFormData({ ...formData, fullName: e.target.value });
+    <div className="h-screen py-20">
+      <h1 className="text-white text-5xl text-center pb-8">Get In Touch</h1>
+      <div className="md:w-3/4 mx-auto md:px-12 px-4">
+        <form method="post" className="flex flex-col py-4">
+          <input
+            type="text"
+            className="mb-6 bg-gray-100 h-8 rounded-lg pl-2"
+            placeholder="Enter your full name."
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setFormData({ ...formData, fullName: e.target.value });
+            }}
+          />
+          <input
+            type="email"
+            className="mb-6 bg-gray-100 h-8 rounded-lg pl-2"
+            placeholder="Enter your email address."
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setFormData({ ...formData, emailAddress: e.target.value });
+            }}
+          />
+          <input
+            type="tel"
+            className="mb-6 bg-gray-100 h-8 rounded-lg pl-2"
+            placeholder="Enter your phone number."
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setFormData({ ...formData, phoneNumber: e.target.value });
+            }}
+          />
+          <textarea
+            name="message"
+            id="contact-message"
+            cols="20"
+            rows="5"
+            className="bg-gray-100 mb-6 rounded-lg pl-2"
+            placeholder="Enter your message."
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+              setFormData({ ...formData, message: e.target.value });
+            }}
+          ></textarea>
+          <div>
+            {disabledButton ? (
+              <button
+                className="mx-auto rounded shadow-lg px-24 py-2 bg-gray-400 text-gray-600 w-full"
+                disabled={disabledButton}
+                form="contact-form"
+                type="button"
+              >
+                Submit
+              </button>
+            ) : (
+              <button
+                form="contact-form"
+                type="button"
+                onClick={() => {
+                  formSubmit(formData);
                 }}
-              />
-
-              <Input
-                required
-                type="email"
-                labelPlaceholder="Email"
-                onChange={(e: ChangeEvent<FormElement>) => {
-                  setFormData({ ...formData, emailAddress: e.target.value });
-                }}
-              />
-              <Input
-                required
-                type="tel"
-                labelPlaceholder="Phone Number"
-                onChange={(e: ChangeEvent<FormElement>) => {
-                  setFormData({ ...formData, phoneNumber: e.target.value });
-                }}
-              />
-              <Textarea
-                required
-                labelPlaceholder="Message"
-                onChange={(e: ChangeEvent<FormElement>) => {
-                  setFormData({ ...formData, message: e.target.value });
-                }}
-              />
-            </div>
-          </form>
-        </Card.Body>
-        <Card.Footer className="pb-8">
-          {disabledButton ? (
-            <button
-              className="mx-auto rounded shadow-lg px-24 py-2 bg-gray-700"
-              disabled={disabledButton}
-              form="contact-form"
-              type="button"
-            >
-              Submit
-            </button>
-          ) : (
-            <button
-              form="contact-form"
-              type="button"
-              onClick={() => {
-                formSubmit(formData);
-              }}
-              className="hover:animate-pulse mx-auto rounded shadow-lg px-24 py-2 bg-shampoo"
-            >
-              Submit
-            </button>
-          )}
-        </Card.Footer>
-      </Card>
-    </>
+                className="hover:animate-pulse mx-auto rounded shadow-lg px-24 py-2 bg-accent text-white w-full"
+              >
+                Submit
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

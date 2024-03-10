@@ -2,13 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 const Logo: React.FC = (): JSX.Element => {
   return (
-    <Link href="/">
+    <Link href="/" className="p-0 mx-8">
       <Image
-        className="ml-4"
-        width={175}
-        height={150}
+        width={415}
+        height={405}
         src="/logo.png"
         alt="Makeup By J'Victoria Logo"
+        className="w-full h-full"
       />
     </Link>
   );

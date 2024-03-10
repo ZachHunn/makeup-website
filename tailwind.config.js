@@ -19,7 +19,7 @@ module.exports = {
         primary: '#e09eae',
         'base-color': '#ba9f93',
         secondary: '#eab3c0',
-        accent: '#a42d49',
+        accent: '#8A7070',
       },
     },
   },

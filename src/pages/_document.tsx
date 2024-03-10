@@ -44,7 +44,7 @@ class MyDocument extends Document {
           />
         </Head>
 
-        <body className=" bg-base text-base-color font-Raleway">
+        <body className="w-screen bg-base text-base-color font-Raleway h-full">
           <Main />
           <NextScript />
         </body>

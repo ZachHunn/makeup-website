@@ -4,19 +4,17 @@ import { NextPage } from 'next';
 import { MediaDisplay } from '../components/MediaDisplay';
 
 const Gallery: NextPage = (): JSX.Element => {
-  const { isLoading, data: galleryQueryData } = useGetGalleryMedia();
+  const galleryQueryData = useGetGalleryMedia();
 
-  if (isLoading) {
-    return 'Loading...';
+  if (galleryQueryData.isLoading) {
+    return <LoadingLayout />;
   }
 
   return (
-    <>
-      <div className="pt-32">
-        <h1 className="text-white text-3xl text-center pb-8">The Gallery</h1>
-        <MediaDisplay mediaInfo={galleryQueryData} />
-      </div>
-    </>
+    <div className="h-full pt-20">
+      <h1 className="text-white text-5xl text-center pb-8">The Gallery</h1>
+      <MediaDisplay mediaInfo={galleryQueryData.data} />
+    </div>
   );
 };
 

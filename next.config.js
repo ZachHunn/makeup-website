@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+let projectId = 'zhqxumwjvtswcosgddyb';
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -14,8 +16,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'supbase.co',
+        hostname: `${projectId}.supabase.co`,
         port: '',
+        pathname: '/storage/**',
       },
     ],
   },
