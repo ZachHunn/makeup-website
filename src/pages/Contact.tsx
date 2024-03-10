@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { ChangeEvent, useState, Form } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useCreateContactEmail } from '../hooks/api/contact';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
@@ -85,8 +85,8 @@ const Contact: NextPage = (): JSX.Element => {
           <textarea
             name="message"
             id="contact-message"
-            cols="20"
-            rows="5"
+            cols={20}
+            rows={5}
             className="bg-gray-100 mb-6 rounded-lg pl-2"
             placeholder="Enter your message."
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {

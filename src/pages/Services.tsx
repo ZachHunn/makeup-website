@@ -49,7 +49,7 @@ const Services: NextPage = (): JSX.Element => {
                     onClick={() => {
                       setModalIsOpen(true);
                     }}
-                    className="btn border border-transparent p-2 bg-base text-white rounded-xl hover:bg-accent hover:animate-pulse"
+                    className="border border-transparent p-2 bg-base text-white rounded-xl hover:bg-accent hover:animate-pulse"
                   >
                     Book Now
                   </button>

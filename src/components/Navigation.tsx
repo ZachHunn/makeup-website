@@ -6,7 +6,6 @@ import { useScroll } from '../hooks/useScroll';
 import { MenuButton } from './MenuButton';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 
 type MenuItem = {
   title: string;
@@ -109,6 +108,7 @@ export const Navigation: React.FC = () => {
 
           <MenuButton
             isOpen={isOpen}
+            //@ts-ignore
             onClick={() => setIsOpen(!isOpen)}
             strokeWidth="2"
             color="#000"
