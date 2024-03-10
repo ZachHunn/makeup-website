@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+.active-nav {
+  visibility: visible;
+  transition: all 0.5s;
+}
+
+.hidden-nav {
+  visibility: hidden;
+  transition: all 0.5s;
+  transform: translateY(-100%);
+}

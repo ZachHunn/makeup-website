@@ -1,22 +1,12 @@
-import { Text } from '@nextui-org/react';
 import { FC } from 'react';
 
 type PageTitleProps = {
   name: string;
-  fontSize: number;
 };
-export const PageTitle: FC<PageTitleProps> = ({
-  name,
-  fontSize,
-}): JSX.Element => {
+export const PageTitle: FC<PageTitleProps> = ({ name }): JSX.Element => {
   return (
-    <Text
-      h1
-      css={{ fontFamily: 'Barlow Condensed, sans-serif' }}
-      className="md:pl-12 md:text-left text-center"
-      size={fontSize}
-    >
-      {name}
-    </Text>
+    <div className="mt-16">
+      <h1 className="text-[60px] pl-8 text-white">{name}</h1>
+    </div>
   );
 };

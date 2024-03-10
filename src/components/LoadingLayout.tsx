@@ -1,15 +1,8 @@
-import { Loading, Text } from '@nextui-org/react';
 export const LoadingLayout: React.FC = (): JSX.Element => {
   return (
-    <div className="pt-32 mb-auto">
-      <Loading
-        className="mx-auto w-full "
-        size="xl"
-        type="gradient"
-        color="currentColor"
-      >
-        <Text h2> Loading </Text>
-      </Loading>
+    <div className="h-screen w-screen flex flex-col items-center pt-40">
+      <div className="border-gray-300 h-40 w-40 animate-spin rounded-full border-8 border-t-accent"></div>
+      <span className="text-3xl">Loading...</span>
     </div>
   );
 };

@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import { Button, Modal, Text } from '@nextui-org/react';
+import React, { FC, useRef } from 'react';
 
 type ConfirmDialigProps = {
   isOpen: boolean;
@@ -11,36 +10,53 @@ export const ConfirmModal: FC<ConfirmDialigProps> = ({
   setIsOpen,
   handleClose,
 }): JSX.Element => {
+  const dialogRef = useRef(null);
   return (
-    <div>
-      <Modal
-        closeButton
-        aria-labelledby="modal-title"
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-      >
-        <Modal.Header>
-          <Text id="modal-title" size={18}>
-            Travel Appointments
-          </Text>
-        </Modal.Header>
+    <dialog
+      ref={dialogRef}
+      open={isOpen}
+      id="confirmation-modal"
+      className={`md:w-5/6 ${
+        isOpen
+          ? 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'
+          : 'hidden'
+      } w-full bg-white rounded-xl shadow text-accent`}
+    >
+      <div className="p-8">
+        <h3 className="font-bold text-2xl text-center text-accent">
+          Travel Appointments
+        </h3>
+        <p className="md:w-3/4 mx-auto py-6 text-xl">
+          If you need travel arrangements to your location on the island of
+          O&apos;ahu, there will be an additional charge of $30. For travel to
+          other islands or locations, please feel free to contact me to discuss
+          the details further.
+        </p>
 
-        <Modal.Body>
-          <Text className="text-center font-bold">
-            *Travel must be booked 3-5 days in advance.*
-          </Text>
-          <Text>
-            If you require travel to you on O&apos;ahu, there will be an
-            additional $30 charge. For travel to other islands or locations,
-            please get in touch with me to go over the specifics.
-          </Text>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button auto flat color="default" onClick={handleClose}>
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+        <p className="mx-auto w-full text-center pb-5">
+          To continue booking, click "Ok", and you will be directed to Square to
+          book your appointment.
+        </p>
+
+        <div className="modal-action flex justify-end flex-row">
+          <form method="dialog">
+            <button
+              className="text-xl border border-base rounded md:w-40 w-20 p-2 bg-accent text-white mr-2.5"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              Close
+            </button>
+            <button
+              className="text-xl border-base border rounded md:w-40 w-20 p-2 bg-accent text-white"
+              onClick={handleClose}
+            >
+              OK
+            </button>
+          </form>
+        </div>
+      </div>
+    </dialog>
   );
 };
