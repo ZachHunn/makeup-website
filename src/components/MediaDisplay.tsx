@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Gallery } from '@prisma/client';
-import { MediaCarouselModal } from './MediaCarouselModal';
 import { MediaInformation } from '../../types/mediaTypes';
 import Image from 'next/image';
 type MediaProps = {
@@ -89,11 +88,7 @@ export const MediaDisplay: React.FC<MediaProps> = ({ mediaInfo }) => {
             </div>
           );
         })}
-      <MediaCarouselModal
-        media={mediaInformation}
-        isOpen={showModal}
-        handleClose={handleClose}
-      />
+  
     </div>
   );
 };
