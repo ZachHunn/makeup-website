@@ -82,8 +82,12 @@ export const MediaDisplay: React.FC<MediaProps> = ({ mediaInfo }) => {
                 loop
                 muted
                 controls
+                autoPlay
+                preload='auto'
+                playsInline
               >
                 <source src={media.mediaUrl} type={media.mediaType} />
+                  Your browser does not support this video.
               </video>
             </div>
           );
