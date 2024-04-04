@@ -63,6 +63,8 @@ export const MediaDisplay: React.FC<MediaProps> = ({ mediaInfo }) => {
                 loading="lazy"
                 width={500}
                 height={500}
+                unoptimized
+                quality={100}
               />
             </div>
           ) : (
