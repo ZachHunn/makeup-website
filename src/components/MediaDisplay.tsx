@@ -57,13 +57,13 @@ export const MediaDisplay: React.FC<MediaProps> = ({ mediaInfo }) => {
               }
             >
               <Image
-                className="w-96 max-h-3/4 aspect-video bg-gray-100 object-fill rounded-md mb-2 md:h-[30rem] h-80 hover:cursor-pointer md:hover:scale-110 touch-auto"
+                className="w-96 md:max-h-3/4 aspect-video bg-gray-100 object-fill rounded-md mb-2 h-[30rem] hover:cursor-pointer md:hover:scale-110 touch-auto"
                 src={media.mediaUrl}
                 alt={media.mediaName}
                 loading="lazy"
-                width={500}
-                height={500}
                 unoptimized
+                width={300}
+                height={750}
                 quality={100}
               />
             </div>
@@ -79,10 +79,10 @@ export const MediaDisplay: React.FC<MediaProps> = ({ mediaInfo }) => {
               }
             >
               <video
-                className="w-96 max-h-3/4 object-fill mb-2 rounded-md md:h-[30rem] h-80 hover:cursor-pointer md:hover:scale-110 touch-auto"
-                autoPlay
+                className="w-96 md:max-h-3/4 object-fill mb-2 rounded-md h-[30rem] hover:cursor-pointer md:hover:scale-110 touch-auto"
                 loop
                 muted
+                controls
               >
                 <source src={media.mediaUrl} type={media.mediaType} />
               </video>
