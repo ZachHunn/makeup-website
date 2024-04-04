@@ -1,11 +1,8 @@
-import { Button, Card, Row, Text } from '@nextui-org/react';
-import { ServiceItem } from '@prisma/client';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { ConfirmModal } from '../components/ConfirmModal';
 import { LoadingLayout } from '../components/LoadingLayout';
-import { PageTitle } from '../components/PageTitle';
 import { useGetServiceItems } from '../hooks/api/services';
 
 const Services: NextPage = (): JSX.Element => {
@@ -21,56 +18,52 @@ const Services: NextPage = (): JSX.Element => {
   };
 
   if (isLoading) {
-    <LoadingLayout />;
+    return <LoadingLayout />;
   }
 
   return (
-    <>
-      <PageTitle name={'Services'} fontSize={60} />
-      <div className="md:grid md:grid-cols-3 md:px-20 md:gap-3 grid-cols-1">
-        {serviceItemsQueryData?.map((item: ServiceItem) => (
-          <div key={item.id} className="p-6">
-            <Card className="border-none h-full sm:min-h-[320px]">
-              <Card.Header className="md:absolute md:z-10 md:top-1 absolute z-10 ">
-                <Text className="text-xl" color="white">
-                  {item.serviceName}
-                </Text>
-              </Card.Header>
-              <Card.Body className="p-0">
-                <Card.Image
-                  className="w-full h-full bg-gray-500"
-                  objectFit="cover"
-                  src="makeup_brushes.png"
-                  alt="Makeup Brushes"
+    <div className="h-full py-20 ">
+      <h1 className="text-white text-5xl text-center pb-8">Services</h1>
+      <div className="flex flex-row flex-wrap gap-6 justify-center">
+        {serviceItemsQueryData
+          ?.sort((a, b) => a.price - b.price)
+          ?.map((item) => (
+            <div
+              className="card w-96 h-80 bg-white shadow-xl rounded-xl"
+              key={item.id}
+            >
+              <figure>
+                <img
+                  src="/service_page_card.png"
+                  alt="Shoes"
+                  className="h-52 w-full rounded-t-lg"
                 />
-              </Card.Body>
-              <Card.Divider />
-              <Card.Footer>
-                <Row wrap="wrap" justify="space-between" align="center">
-                  <Text className="text-lg pl-5">{`$${item.price}.00`}</Text>
-                  <Button
+              </figure>
+              <div className="card-body px-3 pt-3">
+                <h2 className="card-title font-bold text-lg text-accent">
+                  {item.serviceName}
+                </h2>
+                <div className="flex justify-between pt-3">
+                  <p className=" pt-1 pl-2 text-xl"> ${item.price}</p>
+                  <button
                     onClick={() => {
                       setModalIsOpen(true);
                     }}
-                    color="default"
-                    className="pr-5"
-                    size="xs"
-                    flat
+                    className="border border-transparent p-2 bg-base text-white rounded-xl hover:bg-accent hover:animate-pulse"
                   >
-                    <Text className="text-grey-500">Book Now</Text>
-                  </Button>
-                </Row>
-              </Card.Footer>
-            </Card>
-          </div>
-        ))}
+                    Book Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
       </div>
       <ConfirmModal
         isOpen={modalIsOpen}
         setIsOpen={setModalIsOpen}
         handleClose={handleClose}
       />
-    </>
+    </div>
   );
 };
 
