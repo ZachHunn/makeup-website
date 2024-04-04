@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-let projectId = 'zhqxumwjvtswcosgddyb';
+let projectId =  process.env.SUPABASE_PROJECT_ID;
 
 const nextConfig = {
   reactStrictMode: true,
