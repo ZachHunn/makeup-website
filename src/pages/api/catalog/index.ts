@@ -1,7 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { client } from '../../../../utils/squareClient';
 import { CatalogObject } from 'square';
-(BigInt.prototype as any).toJSON = function () {
+
+//@ts-expect-error: ignoring any type error
+BigInt.prototype.toJSON = function () {
   return this.toString();
 };
 

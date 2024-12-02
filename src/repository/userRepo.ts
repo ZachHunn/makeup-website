@@ -2,7 +2,7 @@ import { User } from '@prisma/client';
 import prisma from '../../utils/prismaClient';
 
 export const createUsers = async (userList: User[]) => {
-  for (let user of userList) {
+  for (const user of userList) {
     return await prisma.user.createMany({
       data: user,
     });
