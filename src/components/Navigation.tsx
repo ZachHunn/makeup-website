@@ -108,7 +108,6 @@ export const Navigation: React.FC = () => {
 
           <MenuButton
             isOpen={isOpen}
-            //@ts-ignore
             onClick={() => setIsOpen(!isOpen)}
             strokeWidth="2"
             color="#000"

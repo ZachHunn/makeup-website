@@ -16,7 +16,7 @@ export const useCreateCustomer = () => {
   return useMutation<AxiosResponse<Customer>, unknown, Customer>(
     (newCustomer) => axios.post<Customer>(EUri.CUSTOMER, newCustomer),
     {
-      onError: (error) => {
+      onError: () => {
         snackbar.enqueueSnackbar('Error creating new customer', {
           variant: 'error',
         });

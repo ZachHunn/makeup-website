@@ -18,6 +18,7 @@ const contactApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (error) {
     return res.status(500).json({
       message: 'There was an error sending the email. Please try again!',
+      error,
     });
   }
   return res.status(201).json({ message: 'Email has been created' });

@@ -1,24 +1,23 @@
 import React from 'react';
 import { motion, Transition, SVGMotionProps } from 'framer-motion';
-//@ts-ignore
+//@ts-expect-error: expecting error
 interface Props extends SVGMotionProps {
   isOpen?: boolean;
   color?: string;
   strokeWidth?: string | number;
-  transition?: Transition;
+  transition?: Transition | null;
   lineProps?: any;
+  onClick: () => void;
+  width?: string | number;
+  height?: string | number;
 }
 
-//@ts-ignore
 export const MenuButton = ({
   isOpen = false,
-  //@ts-ignore
   width = '24',
-  //@ts-ignore
   height = 24,
   strokeWidth = 1,
   color = '#000',
-  //@ts-ignore
   transition = null,
   lineProps = null,
   ...props
